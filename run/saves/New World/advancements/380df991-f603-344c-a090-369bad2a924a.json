@@ -1,0 +1,29 @@
+{
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2024-06-09 20:27:52 +0800"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:badlands": "2024-06-09 20:30:20 +0800",
+      "minecraft:river": "2024-06-09 20:29:50 +0800",
+      "minecraft:desert": "2024-06-09 20:28:20 +0800"
+    },
+    "done": false
+  },
+  "minecraft:husbandry/balanced_diet": {
+    "criteria": {
+      "bread": "2024-06-09 20:32:52 +0800"
+    },
+    "done": false
+  },
+  "minecraft:husbandry/root": {
+    "criteria": {
+      "consumed_item": "2024-06-09 20:32:52 +0800"
+    },
+    "done": true
+  },
+  "DataVersion": 3465
+}

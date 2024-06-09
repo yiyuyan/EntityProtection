@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.ksmcbrigade.eo.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ep.refmap.json",
+  "mixins": [
+    "EntityMixin",
+    "LivingMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
