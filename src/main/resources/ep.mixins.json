@@ -10,6 +10,7 @@
     "LivingMixin"
   ],
   "client": [
+    "DeathMixin"
   ],
   "injectors": {
     "defaultRequire": 1
