@@ -6,6 +6,7 @@
   "refmap": "ep.refmap.json",
   "mixins": [
     "EntityMixin",
+    "EventMixin",
     "LivingMixin"
   ],
   "client": [

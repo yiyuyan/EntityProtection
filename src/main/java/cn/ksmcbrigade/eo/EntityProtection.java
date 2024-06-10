@@ -3,10 +3,13 @@ package cn.ksmcbrigade.eo;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.world.level.Level;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -40,7 +43,12 @@ public class EntityProtection {
 
         @Override
         public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-            safes.add(EntityArgument.getEntity(context,"entity").getUUID());
+            EntityArgument.getEntity(context,"entity").setInvulnerable(true);
+            if(EntityArgument.getEntity(context,"entity") instanceof LivingEntity e){
+                e.hurtTime = 0;
+                e.deathTime = 0;
+            }
+            context.getSource().sendSystemMessage(Component.nullToEmpty(String.valueOf(safes.add(EntityArgument.getEntity(context,"entity").getUUID()))));
             return 0;
         }
     }
@@ -49,7 +57,14 @@ public class EntityProtection {
 
         @Override
         public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-            safes.remove(EntityArgument.getEntity(context,"entity").getUUID());
+            context.getSource().sendSystemMessage(Component.nullToEmpty(String.valueOf(safes.remove(EntityArgument.getEntity(context,"entity").getUUID()))));
+            EntityArgument.getEntity(context,"entity").setInvulnerable(false);
+            if(EntityArgument.getEntity(context,"entity") instanceof LivingEntity e){
+                e.hurtTime = 0;
+                e.deathTime = 0;
+                e.updateSwimming();
+                e.setHealth(e.getHealth()<=0?2f:e.getHealth());
+            }
             return 0;
         }
     }
